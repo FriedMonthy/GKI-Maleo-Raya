@@ -3,7 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // Mengimpor CORS
 const path = require('path');
-const loginRoutes = require('../src/routes/login-route'); // Import login routes
+const loginRoutes = require('../src/routes/admin-login-route'); // Import login routes untuk admin
 const app = express();
 
 // Middleware CORS
