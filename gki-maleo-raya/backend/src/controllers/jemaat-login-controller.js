@@ -1,7 +1,7 @@
-const { loginAdminByEmailAndPassword } = require('../models/admin-login-model');
+const { loginJemaatByEmailAndPassword } = require('../models/jemaat-login-model');
 
-// Fungsi Controller untuk Login Admin
-const loginAdmin = (req, res) => {
+// Fungsi Controller untuk Login Jemaat
+const loginJemaat = (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -9,28 +9,26 @@ const loginAdmin = (req, res) => {
     }
 
     // Memanggil model untuk mencari pengguna di database
-    loginAdminByEmailAndPassword(email, password, (err, results) => {
+    loginJemaatByEmailAndPassword(email, password, (err, results) => {
         if (err) {
             console.error('Error querying the database:', err);
             return res.status(500).json({ message: 'Terjadi kesalahan pada server.' });
         }
 
         if (results.length > 0) {
-
+            
             // Simpan informasi pengguna di session
-            req.session.user = { id: results[0].id, email: results[0].email, role: 'admin' };
+            req.session.user = { id: results[0].id, email: results[0].email, role: 'jemaat' };
 
             return res.status(200).json({
                 message: 'Login berhasil!',
                 user: req.session.user,
             });
-
         }
         
         else {
             return res.status(401).json({ message: 'Email atau Password salah!' });
         }
-        
     });
 };
 
@@ -43,4 +41,4 @@ const isAuthenticated = (req, res, next) => {
     }
 };
 
-module.exports = { loginAdmin, isAuthenticated };
+module.exports = { loginJemaat, isAuthenticated };

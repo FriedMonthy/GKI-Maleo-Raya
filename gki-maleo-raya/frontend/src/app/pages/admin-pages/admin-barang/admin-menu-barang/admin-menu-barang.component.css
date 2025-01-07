@@ -1,0 +1,111 @@
+/* Reset dan style dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(45deg, #004b87, #0099cc); /* Gradien biru tua dan biru muda */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    min-height: 80vh; /* Buat container lebih tinggi */
+}
+
+h1 {
+    font-size: 2.8rem;
+    color: #003366; /* Biru Tua */
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.menu-buttons {
+    display: grid;
+    grid-template-columns: 1fr; /* Satu kolom untuk vertikal */
+    gap: 50px; /* Jarak antar tombol */
+}
+
+
+.menu-buttons button {
+    background-color: #0099cc; /* Biru Muda */
+    color: white;
+    font-size: 1.4rem; /* Meningkatkan ukuran font */
+    font-weight: bold; /* Membuat font menjadi bold */
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tambahkan animasi untuk efek klik dan hover */
+.menu-buttons button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu-buttons button:hover::before {
+    width: 0;
+    height: 0;
+}
+
+.menu-buttons button:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.list-barang-button {
+    background-color: #003366; /* Biru Tua */
+}
+
+.list-barang-button:hover {
+    background-color: #002244;
+}
+
+.kelola-peminjaman-barang-button {
+    background-color: #00b5e2; /* Biru Cerah */
+}
+
+.kelola-peminjaman-barang-button:hover {
+    background-color: #0099cc;
+}
+
+/* Untuk tombol di perangkat mobile */
+@media (max-width: 768px) {
+    .menu-buttons {
+        grid-template-columns: 1fr 1fr; /* Satu kolom untuk layar kecil */
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}

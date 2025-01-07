@@ -2,23 +2,52 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { importProvidersFrom } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app/app.component';
-import { LoginComponent } from './app/pages/login/login.component';
-import { HomeComponent } from './app/pages/home/home.component';
-import { AuthGuard } from './app/authentication-guard/authentication.guard'; // Import AuthGuard
+
+// Fungsi Akses Halaman Welcome Login
+import { WelcomeLoginComponent } from './app/pages/welcome-login/welcome-login.component';
+
+// Fungsi Akses Halaman Admin
+import { AdminLoginComponent } from './app/pages/admin-pages/admin-login/admin-login.component';
+import { AdminHomeComponent } from './app/pages/admin-pages/admin-home/admin-home.component';
+import { AdminMenuBarangComponent } from './app/pages/admin-pages/admin-barang/admin-menu-barang/admin-menu-barang.component';
+import { AdminListBarangComponent } from './app/pages/admin-pages/admin-barang/admin-list-barang/admin-list-barang.component';
+import { AdminKelolaPeminjamanBarangComponent } from './app/pages/admin-pages/admin-barang/admin-kelola-peminjaman-barang/admin-kelola-peminjaman-barang.component';
+
+
+// Fungsi Akses Halaman Jemaat
+import { JemaatLoginComponent } from './app/pages/jemaat-pages/jemaat-login/jemaat-login.component';
+import { JemaatHomeComponent } from './app/pages/jemaat-pages/jemaat-home/jemaat-home.component';
+
+import { AuthenticationGuard } from './app/authentication-guard/authentication.guard'; // Import Authentication Guard
 
 const routes: Routes = [
-  { path: '', component: LoginComponent }, // Halaman login tidak dilindungi
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }, // Home dilindungi
+  { path: '', component: WelcomeLoginComponent }, // Rute untuk Welcome Login
+
+  // Path Rute Halaman Login
+  { path: 'admin-login', component: AdminLoginComponent },
+  { path: 'jemaat-login', component: JemaatLoginComponent },
+
+  // Path Rute Halaman Untuk Admin
+  { path: 'admin-home', component: AdminHomeComponent, canActivate: [AuthenticationGuard] },
+  { path: 'admin-menu-barang', component: AdminMenuBarangComponent, canActivate: [AuthenticationGuard]},
+  { path: 'admin-list-barang', component: AdminListBarangComponent, canActivate: [AuthenticationGuard]},
+  { path: 'admin-kelola-peminjaman-barang', component: AdminKelolaPeminjamanBarangComponent, canActivate: [AuthenticationGuard]},
+
+
+  // Path Rute Halaman Untuk Jemaat
+  { path: 'jemaat-home', component: JemaatHomeComponent, canActivate: [AuthenticationGuard] },
 ];
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
-      RouterModule.forRoot(routes),
       HttpClientModule,
+      RouterModule.forRoot(routes),
       FormsModule
     ),
+    provideHttpClient(),
   ],
 }).catch((err) => console.error(err));

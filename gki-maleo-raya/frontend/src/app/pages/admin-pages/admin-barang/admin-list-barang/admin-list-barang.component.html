@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Barang Inventaris</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Daftar Barang Inventaris</h1>
+
+    <!-- Pencarian -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Cari barang..." [(ngModel)]="searchQuery" (ngModelChange)="searchDataBarang($event)">
+      <button (click)="clearSearch()">Clear</button>
+    </div>
+
+    <!-- Button Tambah Barang -->
+    <button (click)="toggleTambahModal()" class="add-item-button">Tambah Barang</button>
+
+    <!-- Modal Tambah Barang -->
+    <div class="modal" *ngIf="showTambahModal">
+        <div class="modal-content">
+        <span class="close" (click)="toggleTambahModal()">&times;</span>
+        <h2>Tambah Barang Inventaris</h2>
+        <form (ngSubmit)="tambahBarang()">
+            <label for="id_barang">ID Barang:</label>
+            <input type="text" [(ngModel)]="newBarang.id_barang" name="id_barang" required>
+    
+            <label for="nama_barang">Nama Barang:</label>
+            <input type="text" [(ngModel)]="newBarang.nama_barang" name="nama_barang" required>
+    
+            <label for="jenis_barang">Jenis Barang:</label>
+            <input type="text" [(ngModel)]="newBarang.jenis_barang" name="jenis_barang" required>
+    
+            <label for="kuantitas_barang">Kuantitas Barang:</label>
+            <input type="number" [(ngModel)]="newBarang.kuantitas_barang" name="kuantitas_barang" required>
+    
+            <label for="kondisi_barang">Kondisi Barang:</label>
+            <input type="text" [(ngModel)]="newBarang.kondisi_barang" name="kondisi_barang" required>
+    
+            <label for="status_barang">Status Barang:</label>
+            <input type="text" [(ngModel)]="newBarang.status_barang" name="status_barang" required>
+    
+            <button type="submit">Tambah</button>
+            <button type="button" (click)="toggleTambahModal()">Batal</button>
+        </form>
+        </div>
+    </div>
+
+        <!-- Modal Edit Barang -->
+    <div class="modal" *ngIf="showEditModal">
+        <div class="modal-content">
+        <span class="close" (click)="toggleEditModal()">&times;</span>
+        <h2>Edit Barang Inventaris</h2>
+        <form (ngSubmit)="updateBarang()">
+            <label for="id_barang">ID Barang:</label>
+            <input type="text" [(ngModel)]="editBarang.id_barang" name="id_barang" required disabled>
+    
+            <label for="nama_barang">Nama Barang:</label>
+            <input type="text" [(ngModel)]="editBarang.nama_barang" name="nama_barang" required>
+    
+            <label for="jenis_barang">Jenis Barang:</label>
+            <input type="text" [(ngModel)]="editBarang.jenis_barang" name="jenis_barang" required>
+    
+            <label for="kuantitas_barang">Kuantitas Barang:</label>
+            <input type="number" [(ngModel)]="editBarang.kuantitas_barang" name="kuantitas_barang" required>
+    
+            <label for="kondisi_barang">Kondisi Barang:</label>
+            <input type="text" [(ngModel)]="editBarang.kondisi_barang" name="kondisi_barang" required>
+    
+            <label for="status_barang">Status Barang:</label>
+            <input type="text" [(ngModel)]="editBarang.status_barang" name="status_barang" required>
+    
+            <button type="submit">Update</button>
+            <button type="button" (click)="toggleEditModal()">Batal</button>
+        </form>
+        </div>
+    </div>
+
+    <!-- Tabel Daftar Inventory -->
+    <table class="inventory-table">
+      <thead>
+        <tr>
+          <th (click)="sortTable('nama_barang')">Nama Barang</th>
+          <th (click)="sortTable('jenis_barang')">Jenis Barang</th>
+          <th (click)="sortTable('kuantitas_barang')">Kuantitas Barang</th>
+          <th (click)="sortTable('kondisi_barang')">Kondisi Barang</th>
+          <th (click)="sortTable('status_barang')">Status Barang</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredData">
+          <td>{{ item.nama_barang }}</td>
+          <td>{{ item.jenis_barang }}</td>
+          <td>{{ item.kuantitas_barang }}</td>
+          <td>{{ item.kondisi_barang }}</td>
+          <td>{{ item.status_barang }}</td>
+          <td class="action-btns">
+            <button class="edit-btn" (click)="editItem(item)">Edit</button>
+            <button class="delete-btn" (click)="deleteItem(item)">Hapus</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+
+</html>

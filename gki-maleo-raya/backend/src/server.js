@@ -3,7 +3,13 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // Mengimpor CORS
 const path = require('path');
-const loginRoutes = require('../src/routes/admin-login-route'); // Import login routes untuk admin
+
+const adminLoginRoutes = require('./routes/admin-login-route');
+const jemaatLoginRoutes = require('./routes/jemaat-login-route');
+
+const barangInventarisRoutes = require('./routes/barang-inventaris-route');
+
+
 const app = express();
 
 // Middleware CORS
@@ -20,8 +26,12 @@ app.use(session({
     cookie: { secure: false }  // Gunakan secure: true untuk HTTPS
 }));
 
-// Gunakan route login
-app.use('/api', loginRoutes);
+// Penggunaan Route untuk Login
+app.use('/admin', adminLoginRoutes);
+app.use('/jemaat', jemaatLoginRoutes);
+
+// Penggunaa Route untuk Barang Inventaris
+app.use('/api/barang-inventaris', barangInventarisRoutes);
 
 // Variabel host dan port
 const port = 3000;

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">    
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid col-md-11 d-flex align-items-center">
+      <!-- Logo -->
+      <img src="logo-gki-maleo-raya.png" class="logo me-3" alt="Logo GKI">
+      
+      <!-- Navbar Brand -->
+      <a class="navbar-brand flex-grow-1 d-flex align-items-center">GKI Maleo Raya</a>
+      
+      <!-- Icon User -->
+      <div class="user d-flex align-items-center">
+        <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#userModal">
+          <i class="bi bi-person-fill"></i>
+        </button>
+      </div>
+    </div>
+  </nav>  
+  
+  <!-- Modal Dialog -->
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">User Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>You are logged in as:</p>
+          <strong>Admin</strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)="onLogout()" class="btn btn-danger">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>      
+  <div class="container mt-3">                
+    <!-- <p>Welcome, Admin!</p> -->
+</div>
+<div class="fitur-menu">
+  <h3>MENU</h3>
+  <div class="menu-grid">
+    <!-- Semua tombol menu digabung dalam satu grid container -->
+    <button class="btn btn-primary btn-lg custom-one" [routerLink]="'/admin-menu-barang'"><i class="bi bi-backpack4"></i>Barang Inventaris</button>
+    <button class="btn btn-primary btn-lg custom-two"><i class="bi bi-clipboard2-data"></i> Data Jemaat</button>
+    <button class="btn btn-primary btn-lg custom-three"><i class="bi bi-currency-dollar"></i>Keuangan</button>
+    <button class="btn btn-primary btn-lg custom-four"><i class="bi bi-house-heart"></i> Ibadah Persekutuan</button>
+    <button class="btn btn-primary btn-lg custom-five"><i class="bi bi-calendar-week"></i> Layanan</button>
+    <button class="btn btn-primary btn-lg custom-six"><i class="bi bi-chat-text"></i> Informasi</button>
+  </div>
+</div>                  
+</body>
+</html>
