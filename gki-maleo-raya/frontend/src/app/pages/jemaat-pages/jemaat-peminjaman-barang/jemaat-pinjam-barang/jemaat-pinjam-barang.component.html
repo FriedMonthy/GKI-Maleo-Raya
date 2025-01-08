@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinjam Barang Inventaris</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Daftar Barang Inventaris</h1>
+
+    <!-- Pencarian -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Cari barang..." [(ngModel)]="searchQuery" (ngModelChange)="searchDataBarang($event)">
+      <button (click)="clearSearch()">Clear</button>
+    </div>
+  
+    <!-- Tabel Daftar Inventory -->
+    <table class="inventory-table">
+      <thead>
+        <tr>
+          <th (click)="sortTable('nama_barang')">Nama Barang</th>
+          <th (click)="sortTable('jenis_barang')">Jenis Barang</th>
+          <th (click)="sortTable('kuantitas_barang')">Kuantitas Barang</th>
+          <th (click)="sortTable('kondisi_barang')">Kondisi Barang</th>
+          <th (click)="sortTable('status_barang')">Status Barang</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredData">
+          <td>{{ item.nama_barang }}</td>
+          <td>{{ item.jenis_barang }}</td>
+          <td>{{ item.kuantitas_barang }}</td>
+          <td>{{ item.kondisi_barang }}</td>
+          <td>{{ item.status_barang }}</td>
+          <td>
+            <button class="pinjam-btn" (click)="openPinjamModal(item)">Pinjam Barang</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Modal Peminjaman -->
+    <div *ngIf="isPinjamModalOpen" class="modal">
+        <div class="modal-content">
+            <button class="close" (click)="closePinjamModal()">×</button>
+            <h2>Form Peminjaman Barang</h2>
+            <br />
+            <label>Nama Peminjam:</label>
+            <input type="text" [(ngModel)]="peminjamData.nama_peminjam">
+            
+            <label>Nama Barang:</label>
+            <input type="text" [(ngModel)]="peminjamData.nama_barang">
+            
+            <label>Tanggal Peminjaman:</label>
+            <input type="date" [(ngModel)]="peminjamData.tanggal_peminjaman">
+            
+            <label>Tanggal Pengembalian:</label>
+            <input type="date" [(ngModel)]="peminjamData.tanggal_pengembalian">
+            
+            <button (click)="submitPeminjaman()">Pinjam</button>
+            <button type="button" (click)="closePinjamModal()">Batal</button>
+        </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

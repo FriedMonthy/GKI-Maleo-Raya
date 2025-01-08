@@ -1,0 +1,113 @@
+body {
+  background-color: rgb(249, 249, 250);
+}
+
+.logo {
+  height: 70px;
+}
+
+.navbar-expand-lg {
+  background-color: white;
+  box-shadow: 5px 5px 10px rgba(216, 216, 218, 0.5);
+  display: flex;
+  align-items: center; /* Selaraskan elemen secara vertikal */
+  padding: 10px 15px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #22267d;
+  margin: 0;
+  display: flex;
+  align-items: center; /* Selaraskan teks navbar-brand secara vertikal */
+}
+
+.user {
+  font-size: 2rem;
+  color: #22267d;
+  background: none;
+  cursor: pointer;
+  margin-left: auto; /* Tempatkan ikon user di ujung kanan */
+  display: flex;
+  align-items: center; /* Selaraskan ikon secara vertikal */
+  justify-content: center; /* Selaraskan ikon secara horizontal */
+  height: 50px; /* Tinggi elemen user sesuai navbar */
+  width: 50px; /* Lebar kotak user untuk memastikan ikon berada di tengah */
+  padding: 0; /* Hapus padding tambahan */
+}
+
+.user i {
+  font-size: 2rem; /* Ukuran ikon tetap */
+  display: block; /* Pastikan ikon dirender sebagai elemen block */
+  color: #22267d;
+}
+
+.modal-title {
+  color: #22267d;
+}
+
+.modal-body strong {
+  color: #0e6ba8;
+}
+
+/* Pastikan modal tidak muncul kembali setelah logout */
+.modal-backdrop {
+  display: none !important; /* Menghilangkan backdrop ketika modal ditutup */
+}
+
+/* Tombol menu */
+.fitur-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.menu-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  width: 100%; /* Pastikan grid memenuhi lebar container */
+}
+
+.fitur-menu h3 {
+  text-align: center;
+}
+
+.btn-lg {
+  width: 100%;
+  height: 120px;
+  font-size: 1.5rem; /* Menambah ukuran font tombol */
+  margin: 0; /* Kombinasi margin horizontal dan vertical */
+  background-color: #22267d;
+  color: white;
+  border: 1px solid white;
+  box-shadow: 0 0 10px 5px rgba(231, 231, 231, 0.596);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-one {
+  background-color: #0a2472;
+}
+
+.custom-two {
+  background-color: #193791;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .btn-lg {
+      height: 100px; /* Tinggi tombol lebih kecil untuk tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-lg {
+      height: 80px; /* Tinggi tombol lebih kecil untuk ponsel */
+  }
+}

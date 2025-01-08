@@ -18,8 +18,13 @@ const loginJemaat = (req, res) => {
         if (results.length > 0) {
             
             // Simpan informasi pengguna di session
-            req.session.user = { id: results[0].id, email: results[0].email, role: 'jemaat' };
-
+            req.session.user = {
+                id: results[0].id_user, 
+                email: results[0].email, 
+                role: 'jemaat',
+                namaJemaat: results[0].nama_jemaat // Store nama jemaat
+            };
+            
             return res.status(200).json({
                 message: 'Login berhasil!',
                 user: req.session.user,

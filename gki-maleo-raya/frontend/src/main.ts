@@ -20,6 +20,10 @@ import { AdminKelolaPeminjamanBarangComponent } from './app/pages/admin-pages/ad
 // Fungsi Akses Halaman Jemaat
 import { JemaatLoginComponent } from './app/pages/jemaat-pages/jemaat-login/jemaat-login.component';
 import { JemaatHomeComponent } from './app/pages/jemaat-pages/jemaat-home/jemaat-home.component';
+import { JemaatMenuPeminjamanBarangComponent } from './app/pages/jemaat-pages/jemaat-peminjaman-barang/jemaat-menu-peminjaman-barang/jemaat-menu-peminjaman-barang.component';
+import { JemaatPinjamBarangComponent } from './app/pages/jemaat-pages/jemaat-peminjaman-barang/jemaat-pinjam-barang/jemaat-pinjam-barang.component';
+import { JemaatHistoryPeminjamanBarangComponent } from './app/pages/jemaat-pages/jemaat-peminjaman-barang/jemaat-history-peminjaman-barang/jemaat-history-peminjaman-barang.component';
+
 
 import { AuthenticationGuard } from './app/authentication-guard/authentication.guard'; // Import Authentication Guard
 
@@ -39,6 +43,10 @@ const routes: Routes = [
 
   // Path Rute Halaman Untuk Jemaat
   { path: 'jemaat-home', component: JemaatHomeComponent, canActivate: [AuthenticationGuard] },
+  { path: 'jemaat-menu-peminjaman-barang', component: JemaatMenuPeminjamanBarangComponent, canActivate: [AuthenticationGuard] },
+  { path: 'jemaat-pinjam-barang', component: JemaatPinjamBarangComponent, canActivate: [AuthenticationGuard] },
+  { path: 'jemaat-history-peminjaman-barang', component: JemaatHistoryPeminjamanBarangComponent, canActivate: [AuthenticationGuard] },
+
 ];
 
 bootstrapApplication(AppComponent, {

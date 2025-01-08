@@ -1,1 +1,63 @@
-<p>admin-kelola-peminjaman-barang works!</p>
+<!DOCTYPE html>
+<html lang="id">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Peminjaman Barang</title>
+    </head>
+
+    <body>
+
+    <div class="container">
+        <h1>Kelola Peminjaman Barang</h1>
+
+        <!-- Pencarian -->
+        <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Cari barang..." [(ngModel)]="searchQuery" (ngModelChange)="searchDataBarang($event)">
+        <button (click)="clearSearch()">Clear</button>
+        </div>
+    
+        <!-- Tabel Kelola Peminjaman Barang -->
+        <table class="kelola-pinjam-data-table">
+        <thead>
+            <tr>
+            <th (click)="sortTable('id_peminjaman')">ID Peminjaman</th>
+            <th (click)="sortTable('nama_peminjam')">Nama Peminjam</th>
+            <th (click)="sortTable('nama_barang')">Nama Barang</th>
+            <th (click)="sortTable('tanggal_peminjaman')">Tanggal Peminjaman</th>
+            <th (click)="sortTable('tanggal_pengembalian')">Tanggal Pengembalian</th>
+            <th (click)="sortTable('status_verifikasi')">Status Verifikasi</th>
+            <th (click)="sortTable('status_peminjaman')">Status Peminjaman</th>
+            <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of filteredData">
+            <td>{{ item.id_peminjaman }}</td>
+            <td>{{ item.nama_peminjam }}</td>
+            <td>{{ item.nama_barang }}</td>
+            <td>{{ item.tanggal_peminjaman }}</td>
+            <td>{{ item.tanggal_pengembalian }}</td>
+            <td>{{ item.status_verifikasi }}</td>
+            <td>{{ item.status_peminjaman }}</td>
+            <td>
+                <!-- Aksi Verifikasi -->
+                <button *ngIf="item.status_verifikasi === 'Menunggu Persetujuan'" (click)="setujuiPeminjaman(item.id_peminjaman)" class="btn-setujui">Setujui</button>
+                <button *ngIf="item.status_verifikasi === 'Menunggu Persetujuan'" (click)="tolakPeminjaman(item.id_peminjaman)" class="btn-tolak">Tolak</button>
+            
+                <!-- Aksi Selesai -->
+                <button *ngIf="item.status_peminjaman === 'Dipinjam'" (click)="selesaiPeminjaman(item.id_peminjaman)" class="btn-selesai">Selesai</button>
+            
+                <!-- Hapus Data -->
+                <button (click)="hapusPeminjaman(item.id_peminjaman)" class="btn-hapus">Hapus</button>
+              </td>
+            </tr>
+        </tbody>
+        </table>
+
+    </div>
+
+    </body>
+
+</html>

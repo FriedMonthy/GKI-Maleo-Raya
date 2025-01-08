@@ -26,28 +26,45 @@
         <div class="modal-content">
         <span class="close" (click)="toggleTambahModal()">&times;</span>
         <h2>Tambah Barang Inventaris</h2>
+        <br />
         <form (ngSubmit)="tambahBarang()">
             <label for="id_barang">ID Barang:</label>
             <input type="text" [(ngModel)]="newBarang.id_barang" name="id_barang" required>
-    
+          
             <label for="nama_barang">Nama Barang:</label>
             <input type="text" [(ngModel)]="newBarang.nama_barang" name="nama_barang" required>
-    
+          
             <label for="jenis_barang">Jenis Barang:</label>
-            <input type="text" [(ngModel)]="newBarang.jenis_barang" name="jenis_barang" required>
-    
+            <select [(ngModel)]="newBarang.jenis_barang" name="jenis_barang" required>
+              <option value="Elektronik">Elektronik</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Alat Tulis Kantor">Alat Tulis Kantor</option>
+              <option value="Kebersihan">Kebersihan</option>
+              <option value="Keamanan">Keamanan</option>
+              <option value="Lain-Lain">Lain-Lain</option>
+            </select>
+          
             <label for="kuantitas_barang">Kuantitas Barang:</label>
             <input type="number" [(ngModel)]="newBarang.kuantitas_barang" name="kuantitas_barang" required>
-    
+          
             <label for="kondisi_barang">Kondisi Barang:</label>
-            <input type="text" [(ngModel)]="newBarang.kondisi_barang" name="kondisi_barang" required>
-    
+            <select [(ngModel)]="newBarang.kondisi_barang" name="kondisi_barang" required>
+              <option value="Baik">Baik</option>
+              <option value="Butuh Perbaikan">Butuh Perbaikan</option>
+              <option value="Rusak">Rusak</option>
+            </select>
+          
             <label for="status_barang">Status Barang:</label>
-            <input type="text" [(ngModel)]="newBarang.status_barang" name="status_barang" required>
-    
+            <select [(ngModel)]="newBarang.status_barang" name="status_barang" required>
+              <option value="Tersedia">Tersedia</option>
+              <option value="Dipinjam">Dipinjam</option>
+              <option value="Tidak Tersedia">Tidak Tersedia</option>
+            </select>
+          
             <button type="submit">Tambah</button>
             <button type="button" (click)="toggleTambahModal()">Batal</button>
-        </form>
+          </form>
+          
         </div>
     </div>
 
@@ -56,30 +73,58 @@
         <div class="modal-content">
         <span class="close" (click)="toggleEditModal()">&times;</span>
         <h2>Edit Barang Inventaris</h2>
+        <br />
         <form (ngSubmit)="updateBarang()">
             <label for="id_barang">ID Barang:</label>
             <input type="text" [(ngModel)]="editBarang.id_barang" name="id_barang" required disabled>
-    
+          
             <label for="nama_barang">Nama Barang:</label>
             <input type="text" [(ngModel)]="editBarang.nama_barang" name="nama_barang" required>
-    
+          
             <label for="jenis_barang">Jenis Barang:</label>
-            <input type="text" [(ngModel)]="editBarang.jenis_barang" name="jenis_barang" required>
-    
+            <select [(ngModel)]="editBarang.jenis_barang" name="jenis_barang" required>
+              <option value="Elektronik">Elektronik</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Alat Tulis Kantor">Alat Tulis Kantor</option>
+              <option value="Kebersihan">Kebersihan</option>
+              <option value="Keamanan">Keamanan</option>
+              <option value="Lain-Lain">Lain-Lain</option>
+            </select>
+          
             <label for="kuantitas_barang">Kuantitas Barang:</label>
             <input type="number" [(ngModel)]="editBarang.kuantitas_barang" name="kuantitas_barang" required>
-    
+          
             <label for="kondisi_barang">Kondisi Barang:</label>
-            <input type="text" [(ngModel)]="editBarang.kondisi_barang" name="kondisi_barang" required>
-    
+            <select [(ngModel)]="editBarang.kondisi_barang" name="kondisi_barang" required>
+              <option value="Baik">Baik</option>
+              <option value="Butuh Perbaikan">Butuh Perbaikan</option>
+              <option value="Rusak">Rusak</option>
+            </select>
+          
             <label for="status_barang">Status Barang:</label>
-            <input type="text" [(ngModel)]="editBarang.status_barang" name="status_barang" required>
-    
+            <select [(ngModel)]="editBarang.status_barang" name="status_barang" required>
+              <option value="Tersedia">Tersedia</option>
+              <option value="Dipinjam">Dipinjam</option>
+              <option value="Tidak Tersedia">Tidak Tersedia</option>
+            </select>
+          
             <button type="submit">Update</button>
             <button type="button" (click)="toggleEditModal()">Batal</button>
-        </form>
+          </form>          
         </div>
     </div>
+
+    <!-- Modal Konfirmasi Hapus -->
+    <div class="modal" *ngIf="showDeleteConfirmModal">
+        <div class="modal-content">
+        <span class="close" (click)="cancelDelete()">&times;</span>
+        <h2>Konfirmasi Hapus Barang</h2>
+        <p>Apakah Anda yakin ingin menghapus barang <strong>{{ itemToDelete?.nama_barang }}</strong>?</p>
+        <button (click)="confirmDelete()">Ya, Hapus</button>
+        <button (click)="cancelDelete()">Batal</button>
+        </div>
+    </div>
+  
 
     <!-- Tabel Daftar Inventory -->
     <table class="inventory-table">

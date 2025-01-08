@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-jemaat-home',
   standalone: true,
+  imports: [RouterModule],
   templateUrl: './jemaat-home.component.html',
   styleUrls: ['./jemaat-home.component.css'],
 })
+
 export class JemaatHomeComponent implements OnInit {
   user: any;
 
@@ -29,6 +31,13 @@ export class JemaatHomeComponent implements OnInit {
 
   onLogout() {
     sessionStorage.removeItem('user'); // Hapus data user dari session
+
+    // Hapus overlay Bootstrap jika masih ada
+    const modalBackdrop = document.querySelector('.modal-backdrop');
+    if (modalBackdrop) {
+      modalBackdrop.remove();
+    }
+    
     this.router.navigate(['/jemaat-login']); // Kembali ke halaman login jemaat
   }
 }

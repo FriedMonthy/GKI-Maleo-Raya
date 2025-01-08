@@ -17,14 +17,18 @@ export class AdminListBarangComponent implements OnInit {
   searchQuery: string = '';
   showTambahModal: boolean = false;  // Flag untuk modal tambah barang
   showEditModal: boolean = false; // Flag untuk modal edit barang
+  showDeleteConfirmModal: boolean = false;  // Flag untuk modal konfirmasi hapus data barang
+  itemToDelete: any = null; // Untuk menyimpan item data barang yang akan dihapus
+
   newBarang: any = {
     id_barang: '',
     nama_barang: '',
     jenis_barang: '',
     kuantitas_barang: 0,
     kondisi_barang: '',
-    status_barang: ''
+    status_barang: 'Tersedia'
   };
+
   editBarang: any = {  // Data barang yang akan diedit
     id_barang: '',
     nama_barang: '',
@@ -59,6 +63,7 @@ export class AdminListBarangComponent implements OnInit {
     this.filteredData = this.barangData;
   }
 
+  // Fungsi untuk sorting tabel berdasarkan kolom
   sortTable(field: string) {
     this.filteredData = [...this.filteredData].sort((a, b) => {
       if (a[field] < b[field]) return -1;
@@ -74,11 +79,23 @@ export class AdminListBarangComponent implements OnInit {
   }
 
   deleteItem(item: any) {
-    this.http.delete(`http://localhost:3000/api/barang-inventaris/${item.id_barang}`)
-      .subscribe(() => {
-        this.barangData = this.barangData.filter(b => b.id_barang !== item.id_barang);
-        this.filteredData = [...this.barangData];
-      });
+    this.itemToDelete = item;  // Simpan item yang ingin dihapus
+    this.showDeleteConfirmModal = true;  // Tampilkan modal konfirmasi hapus
+  }
+
+  confirmDelete() {
+    if (this.itemToDelete) {
+      this.http.delete(`http://localhost:3000/api/barang-inventaris/${this.itemToDelete.id_barang}`)
+        .subscribe(() => {
+          this.fetchBarangData(); // Reload data setelah menghapus data
+          this.showDeleteConfirmModal = false; // Otomatis menutup konfirmasi modal
+        });
+    }
+  }
+
+  cancelDelete() {
+    this.showDeleteConfirmModal = false; // Otomatis menutup konfirmasi modal
+    this.itemToDelete = null; // Clear item yang tidak jadi di hapus
   }
 
   // Toggle modal untuk tambah barang
